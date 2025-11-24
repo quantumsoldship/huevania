@@ -28,7 +28,6 @@ function Enemy:init(x, y, pattern)
     
     -- Pattern state variables
     self.spiralAngle = 0
-    self.burstCount = 0
     self.wavePhase = 0
     
     -- Set up firing timer based on pattern
@@ -80,8 +79,6 @@ function Enemy:fireCircularBurst()
         local bulletType = (i % 2 == 0) and BULLET_TYPES.BOUNCING or BULLET_TYPES.NORMAL
         Bullet(self.x, self.y, angle, 2, bulletType)
     end
-    
-    self.burstCount += 1
 end
 
 -- PATTERN: Wave - fire bullets in a sweeping wave motion

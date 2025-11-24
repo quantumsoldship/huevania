@@ -48,9 +48,9 @@ end
 function Bullet:collisionResponse(_other)
     if self.bulletType == BULLET_TYPES.PHASING then
         return gfx.sprite.kCollisionTypeOverlap
-    elseif self.bulletType == BULLET_TYPES.BOUNCING then
-        return gfx.sprite.kCollisionTypeBounce
     else
+        -- Both normal and bouncing bullets use slide collision
+        -- Bouncing behavior is handled manually in update()
         return gfx.sprite.kCollisionTypeSlide
     end
 end
@@ -85,6 +85,10 @@ function Bullet:update()
                 end
                 if collision.normal.y ~= 0 then
                     reverseY = true
+                end
+                -- Early exit if both axes need reversal
+                if reverseX and reverseY then
+                    break
                 end
             end
             
