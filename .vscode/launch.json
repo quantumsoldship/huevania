@@ -1,0 +1,13 @@
+/* .vscode/launch.json */
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Playdate: Build + Run (Lua)",
+      "type": "pwa-node",
+      "request": "launch",
+      "program": "${workspaceFolder}/.vscode/run-simulator.js",
+      "preLaunchTask": "Build Playdate (Lua → .pdx)"
+    }
+  ]
+}
