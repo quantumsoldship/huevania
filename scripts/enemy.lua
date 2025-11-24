@@ -123,7 +123,7 @@ end
 --     -- Update any pattern state variables
 -- end
 
-function Enemy:collisionResponse()
+function Enemy:collisionResponse(_other)
     return gfx.sprite.kCollisionTypeOverlap
 end
 

@@ -45,7 +45,7 @@ function Bullet:init(x, y, angle, speed, bulletType)
     self:add()
 end
 
-function Bullet:collisionResponse(other)
+function Bullet:collisionResponse(_other)
     if self.bulletType == BULLET_TYPES.PHASING then
         return gfx.sprite.kCollisionTypeOverlap
     elseif self.bulletType == BULLET_TYPES.BOUNCING then
@@ -75,15 +75,24 @@ function Bullet:update()
                 return
             end
             
-            -- Reverse velocity based on collision normal
+            -- Reverse velocity based on collision normals (check all collisions once)
+            local reverseX = false
+            local reverseY = false
             for i = 1, length do
                 local collision = collisions[i]
                 if collision.normal.x ~= 0 then
-                    self.vx = -self.vx
+                    reverseX = true
                 end
                 if collision.normal.y ~= 0 then
-                    self.vy = -self.vy
+                    reverseY = true
                 end
+            end
+            
+            if reverseX then
+                self.vx = -self.vx
+            end
+            if reverseY then
+                self.vy = -self.vy
             end
         end
     else
