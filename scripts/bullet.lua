@@ -1,6 +1,11 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+-- Screen bounds for off-screen cleanup
+local SCREEN_WIDTH <const> = 400
+local SCREEN_HEIGHT <const> = 240
+local CLEANUP_MARGIN <const> = 10
+
 class('Bullet').extends(gfx.sprite)
 
 -- Bullet types determine collision behavior
@@ -92,7 +97,8 @@ function Bullet:update()
     end
     
     -- Remove bullet if off-screen
-    if self.x < -10 or self.x > 410 or self.y < -10 or self.y > 250 then
+    if self.x < -CLEANUP_MARGIN or self.x > SCREEN_WIDTH + CLEANUP_MARGIN or 
+       self.y < -CLEANUP_MARGIN or self.y > SCREEN_HEIGHT + CLEANUP_MARGIN then
         self:remove()
     end
 end

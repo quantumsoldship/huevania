@@ -59,15 +59,11 @@ end
 function Enemy:fireSpiralPattern()
     local numBullets = 3
     local angleStep = 120
+    local bulletTypes = {BULLET_TYPES.NORMAL, BULLET_TYPES.PHASING, BULLET_TYPES.NORMAL}
     
     for i = 1, numBullets do
         local angle = self.spiralAngle + (i - 1) * angleStep
-        -- Mix of bullet types for variety
-        local bulletType = BULLET_TYPES.NORMAL
-        if i == 2 then
-            bulletType = BULLET_TYPES.PHASING
-        end
-        Bullet(self.x, self.y, angle, 2.5, bulletType)
+        Bullet(self.x, self.y, angle, 2.5, bulletTypes[i])
     end
     
     self.spiralAngle += 15  -- Rotate the spiral
@@ -108,21 +104,12 @@ end
 -- PATTERN: Random - fire bullets in random directions with mixed types
 function Enemy:fireRandomPattern()
     local numBullets = math.random(2, 4)
+    local availableTypes = {BULLET_TYPES.NORMAL, BULLET_TYPES.PHASING, BULLET_TYPES.BOUNCING}
     
     for i = 1, numBullets do
         local angle = math.random(0, 359)
         local speed = math.random(15, 30) / 10  -- 1.5 to 3.0
-        
-        -- Random bullet type selection
-        local rand = math.random(1, 3)
-        local bulletType
-        if rand == 1 then
-            bulletType = BULLET_TYPES.NORMAL
-        elseif rand == 2 then
-            bulletType = BULLET_TYPES.PHASING
-        else
-            bulletType = BULLET_TYPES.BOUNCING
-        end
+        local bulletType = availableTypes[math.random(1, #availableTypes)]
         
         Bullet(self.x, self.y, angle, speed, bulletType)
     end
