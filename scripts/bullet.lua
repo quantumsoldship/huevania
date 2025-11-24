@@ -1,6 +1,11 @@
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
+-- Cache screen dimensions
+local SCREEN_WIDTH <const> = pd.display.getWidth()
+local SCREEN_HEIGHT <const> = pd.display.getHeight()
+local OFF_SCREEN_BUFFER <const> = 10
+
 class('Bullet').extends(gfx.sprite)
 
 function Bullet:init(x, y, angle, speed)
@@ -31,9 +36,8 @@ function Bullet:update()
     self:moveBy(dx, dy)
     
     -- Remove if off-screen
-    local screenWidth = pd.display.getWidth()
-    local screenHeight = pd.display.getHeight()
-    if self.x < -10 or self.x > screenWidth + 10 or self.y < -10 or self.y > screenHeight + 10 then
+    if self.x < -OFF_SCREEN_BUFFER or self.x > SCREEN_WIDTH + OFF_SCREEN_BUFFER or 
+       self.y < -OFF_SCREEN_BUFFER or self.y > SCREEN_HEIGHT + OFF_SCREEN_BUFFER then
         self:remove()
     end
 end
