@@ -14,6 +14,7 @@ import "scripts/enemy"
 GameScene()
 
 -- Spawn a test enemy at position (200, 120)
+-- Note: This is spawned here for testing. In production, enemies should be managed by GameScene
 Enemy(200, 120)
 
 local pd <const> = playdate

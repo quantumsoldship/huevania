@@ -13,12 +13,14 @@ function Enemy:init(x, y)
         gfx.fillRect(0, 0, 20, 20)
         gfx.setColor(gfx.kColorBlack)
         gfx.drawRect(0, 0, 20, 20)
-        gfx.drawTextAligned("E", 10, 6, kTextAlignment.center)
+        gfx.drawTextAligned("E", 10, 6, gfx.kTextAlignment.center)
     gfx.popContext()
     
     self:setImage(enemyImage)
     self:moveTo(x, y)
     self:setCollideRect(0, 0, 20, 20)
+    self:setZIndex(Z_INDEXES.Enemy)
+    self:setTag(TAGS.Enemy)
     self:add()
     
     -- Initialize firing pattern variables
