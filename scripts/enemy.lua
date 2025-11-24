@@ -23,12 +23,16 @@ function Enemy:init(x, y)
     self:setCollideRect(0, 0, enemySize, enemySize)
     self:add()
     
+    -- Bullet firing configuration
+    self.bulletSpeed = 2
+    self.fireInterval = 500  -- milliseconds
+    
     -- Initialize spiral pattern variables
     self.currentAngle = 0
     self.angleIncrement = 15  -- degrees to increase per shot
     
     -- Set up a timer to fire bullets in a spiral pattern
-    self.fireTimer = pd.timer.new(500, function()
+    self.fireTimer = pd.timer.new(self.fireInterval, function()
         self:fireBullet()
     end)
     self.fireTimer.repeats = true
@@ -37,7 +41,7 @@ end
 function Enemy:fireBullet()
     -- Create a bullet at the enemy's position with current angle
     local x, y = self:getPosition()
-    Bullet(x, y, self.currentAngle, 2)
+    Bullet(x, y, self.currentAngle, self.bulletSpeed)
     
     -- Increment angle for spiral effect
     self.currentAngle = (self.currentAngle + self.angleIncrement) % 360

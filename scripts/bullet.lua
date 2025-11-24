@@ -33,9 +33,9 @@ function Bullet:update()
     -- Move the bullet
     self:moveBy(self.vx, self.vy)
     
-    -- Remove bullet if off-screen
+    -- Remove bullet if off-screen (Playdate screen is 400x240)
     local x, y = self:getPosition()
-    if x < -10 or x > 410 or y < -10 or y > 250 then
+    if x < -10 or x > 400 or y < -10 or y > 240 then
         self:remove()
     end
 end
