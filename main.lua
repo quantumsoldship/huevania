@@ -9,7 +9,12 @@ import "scripts/libraries/LDtk"
 
 import "scripts/gameScene"
 import "scripts/player"
+import "scripts/bullet"
+import "scripts/enemy"
 GameScene()
+
+-- Spawn a test enemy at position (200, 120)
+Enemy(200, 120)
 
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
