@@ -18,6 +18,9 @@ function GameScene:init()
     self.spawnY = 8 * 16
 
     self.player = Player(self.spawnX,self.spawnY,self)
+    
+    -- Spawn test enemy at screen center with spiral pattern
+    self.testEnemy = Enemy(200, 120, FIRING_PATTERNS.SPIRAL)
 end
 
 

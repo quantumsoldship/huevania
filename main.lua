@@ -9,6 +9,8 @@ import "scripts/libraries/LDtk"
 
 import "scripts/gameScene"
 import "scripts/player"
+import "scripts/bullet"
+import "scripts/enemy"
 GameScene()
 
 local pd <const> = playdate
