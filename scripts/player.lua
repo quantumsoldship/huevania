@@ -168,12 +168,13 @@ function Player:applyDrag(amount)
     if self.xVelocity > 0 then
         self.xVelocity -= amount
     elseif self.xVelocity < 0 then
-        self.xVelocity += amount
+        self.xVelocity = self.xVelocity + amount
 
     end
 
     if math.abs(self.xVelocity) < self.minimumAirSpeed then
         self.xVelocity = 0
+
 
     end
 end
