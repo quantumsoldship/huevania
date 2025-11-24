@@ -4,10 +4,14 @@ local gfx <const> = playdate.graphics
 local ldtk <const> = LDtk
 
 Z_INDEXES = {
-    Player = 100
+    Player = 100,
+    Enemy = 50,
+    Bullet = 75
 }
 TAGS = {
-    Player = 1
+    Player = 1,
+    Enemy = 2,
+    Bullet = 3
 }
 
 ldtk.load("levels/world.ldtk", false)
